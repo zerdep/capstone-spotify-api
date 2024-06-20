@@ -2,7 +2,7 @@ package tests;
 
 import info.ApiInfo;
 import models.Playlist;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import services.CreatePlaylistService;
 import services.PlaylistContentService;
 import services.UpdatePlaylistService;

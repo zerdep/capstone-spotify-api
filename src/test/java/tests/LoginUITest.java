@@ -1,8 +1,10 @@
 package tests;
 
 import info.UserInfo;
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.LoginPage;
@@ -13,11 +15,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LoginUITest {
     WebDriver driver;
 
-    @Before
+    @BeforeEach
     public void browserSetup() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        System.out.println("hello");
     }
     @Test
     public void testEmptyCredentials() {
@@ -50,5 +51,10 @@ public class LoginUITest {
                 .loginAs(UserInfo.USERNAME,UserInfo.PASSWORD);
         String accountName = statusPage.openWebPlayer().getAccountName();
         assertEquals(UserInfo.ACCOUNT_NAME, accountName);
+    }
+
+    @AfterEach
+    public void tearDown(){
+        driver.quit();
     }
 }

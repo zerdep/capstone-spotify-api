@@ -1,7 +1,7 @@
 package info;
 
 public class ApiInfo {
-    public static final String TOKEN = "BQDK4wPpJjyH1mH3g89SVVo5nXF14ipCowQWApW3ot0kKxT24IMS1uQoMEOXLleSusFKLJF2QcMjnbgKPWb0cyULsJqPw9pmDp9f-ESc8R4ocLtHC0--bRwM6r_NV0D_W9JX641P3LCWKwX5mCaSK61WOAl8udcJfxramFcK0nFweHBXKhNQney7o4H8DFCcz7znBLiOpbWyuOv9Ijuh28EqvES-G_Tcez0ag_fa-5XQnlMk63MXm5eYkvgDoERjRvsdIqlCXnt-Bw";
+    public static final String TOKEN = "BQBp0uFknJqDmawvaCfrtAnaoGMMQQFXZ45LYu4ajvgq3bO8RHAOzma_ncWDcYeKQf3d5krplbTqLJaBC6YAcmU_NVhEa1n-AkWLsD8S5uxvvIqhrT9LN9hoPhizP_rSqciTZZQYKq0uPOnxLnJLgudxE7ldZv0oeSoy5J1XHx9jZAo3nIIW2bWh0Ukil_ltrgYQFdtQ5zNCt1pWdZxvNE3Jt7b-xbj0x4DvItsFWEBV4-PMed0w4NUTj215c9WP-OTSkPYWO8b90w";
     public static final String USER_ID = "31ip3gvpq5yuil4f6gnafl4odr5y";
     public static final String TRACK_URI = "spotify:track:4TQfMvGF7yMIspZ0CNLaCu";
 }

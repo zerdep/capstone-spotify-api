@@ -2,8 +2,9 @@ package tests;
 
 import info.UserInfo;
 import models.Playlist;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.LoginPage;
@@ -18,7 +19,7 @@ public class EndToEndTest {
 
     WebDriver driver;
 
-    @Before
+    @BeforeEach
     public void browserSetup() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -73,10 +74,15 @@ public class EndToEndTest {
                 .loginAs(UserInfo.USERNAME,UserInfo.PASSWORD);
         assertEquals(UserInfo.ACCOUNT_NAME, statusPage.getAccountName());
         WebPlayerHomePage homePage = statusPage.openWebPlayer();
-        String trackName = homePage.searchSong("Whitney Elizabeth Houston")
+        String trackName = homePage.searchSong("Whitney Houston I Will Always Love You")
                 .addTrackToNewestPlaylist("I Will Always Love You")
                 .getFirstTrackNameInPlaylist();
         System.out.println(trackName);
         assertEquals("I Will Always Love You", trackName);
+    }
+
+    @AfterEach
+    public void tearDown(){
+        driver.quit();
     }
 }
