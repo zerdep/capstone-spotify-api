@@ -22,6 +22,9 @@ public class PlaylistUITest {
         driver.manage().window().maximize();
     }
 
+    /*
+    * logs in to account and returns LoginStatusPage
+    * */
     public LoginStatusPage login(){
         LoginPage loginPage = new LoginPage(driver);
         LoginStatusPage statusPage = loginPage.openPage()
@@ -30,6 +33,9 @@ public class PlaylistUITest {
         return statusPage;
     }
 
+    /**
+     * Verifies the functionality of creating a new playlist.
+     */
     @Test
     public void testCreatePlaylist(){
         WebPlayerHomePage homePage = login()
@@ -38,6 +44,9 @@ public class PlaylistUITest {
         assertEquals(homePage.getLastCreatedPlaylistName(), homePage.getPlaylistNameMainArea());
     }
 
+    /**
+     * Confirms that the details of an existing playlist can be edited.
+     */
     @Test
     public void testEditPlaylistDetail(){
 
@@ -50,6 +59,9 @@ public class PlaylistUITest {
         assertEquals("Edited name", homePage.getPlaylistNameMainArea());
     }
 
+    /**
+     * Ensures that a playlist can be deleted successfully.
+     */
     @Test
     public void testDeletePlaylist(){
         WebPlayerHomePage homePage = login()
@@ -65,6 +77,9 @@ public class PlaylistUITest {
         assertNotEquals(lastPlaylistName, homePage.getLastCreatedPlaylistName());
     }
 
+    /**
+     * Tests the ability to search for songs and add them to a playlist.
+     */
     @Test
     public void testAddSongToPlaylist(){
         WebPlayerHomePage homePage = login()
@@ -78,6 +93,9 @@ public class PlaylistUITest {
         assertEquals("I Will Always Love You", trackName);
     }
 
+    /**
+     * Validates the functionality to remove a song from a playlist.
+     */
     @Test
     public void testRemoveSongFromPlaylist(){
         WebPlayerHomePage homePage = login()

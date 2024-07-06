@@ -23,6 +23,9 @@ public class ApiTest {
         return createdPlaylist;
     }
 
+    /**
+     * Validates the API endpoint for creating a new playlist.
+     */
     @Test
     public void testCreatePlaylist() {
         Playlist playlist = new Playlist("New Playlist",
@@ -34,6 +37,9 @@ public class ApiTest {
         assertEquals(playlist, createdPlaylist);
     }
 
+    /**
+     * Ensures that the playlist details can be updated via the API.
+     */
     @Test
     public void testUpdatePlaylist() {
 
@@ -51,6 +57,9 @@ public class ApiTest {
 
     }
 
+    /**
+     * Checks the API functionality to add songs to a playlist.
+     */
     @Test
     public void testAddTrackToPlaylist() {
         //create playlist
@@ -66,6 +75,9 @@ public class ApiTest {
         assertFalse(snapshotId.isBlank());
     }
 
+    /**
+     * Validates the API endpoint for removing a song from a playlist.
+     */
     @Test
     public void testDeleteTrackFromPlaylist() {
         //create playlist

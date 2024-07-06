@@ -10,7 +10,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import pages.LoginPage;
 import pages.LoginStatusPage;
 import pages.WebPlayerHomePage;
-import services.CreatePlaylistService;
 import services.UpdatePlaylistService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,16 +24,16 @@ public class EndToEndTest {
         driver.manage().window().maximize();
     }
 
+    /**
+     * Creates and edits playlist details with API operations, then verifies using UI operations.
+     */
     @Test
     public void testEditDetailPlaylist() {
 
         //create playlist
-        Playlist playlist = new Playlist("To be Updated Playlist",
-                "To be updated playlist description",
-                false);
-        CreatePlaylistService createPlaylistService = new CreatePlaylistService();
-        Playlist createdPlaylist = createPlaylistService.createPlaylist(playlist);
-        assertEquals(201, createPlaylistService.getStatusCode());
+        Playlist createdPlaylist = new ApiTest()
+                .createPlaylist("New Playlist E2E",
+                        "New Playlist Description E2E");
 
 
         //update playlist
@@ -45,13 +44,14 @@ public class EndToEndTest {
         int statusCode = updatePlaylistService.updatePlaylist(createdPlaylist);
         assertEquals(200, statusCode);
 
+        //wait for update to show in profile
         try {
             Thread.sleep(10000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 
-        //UI part
+        //login and verify updated name and description
         LoginStatusPage statusPage = new LoginPage(driver)
                 .openPage()
                 .loginAs(UserInfo.USERNAME,UserInfo.PASSWORD);
@@ -65,10 +65,18 @@ public class EndToEndTest {
         assertEquals("Updated playlist description!", description);
     }
 
+    /**
+     * Creates playlist using API then adds track to playlist using UI operations.
+     */
     @Test
     public void testAddSongToPlaylist(){
-        new ApiTest().createPlaylist("New Playlist E2E", "New Playlist Description E2E");
 
+        //create playlist
+        new ApiTest()
+                .createPlaylist("New Playlist E2E",
+                        "New Playlist Description E2E");
+
+        //add track to playlist
         LoginStatusPage statusPage = new LoginPage(driver)
                 .openPage()
                 .loginAs(UserInfo.USERNAME,UserInfo.PASSWORD);

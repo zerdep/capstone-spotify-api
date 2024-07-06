@@ -20,6 +20,11 @@ public class LoginUITest {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
+
+    /**
+     * Validates that the login form displays appropriate error messages
+     * when submitted with empty credentials.
+     */
     @Test
     public void testEmptyCredentials() {
         LoginPage loginPage = new LoginPage(driver);
@@ -34,6 +39,9 @@ public class LoginUITest {
                 loginPage.getPasswordErrorText());
     }
 
+    /**
+     * Checks the error message when incorrect login credentials are provided.
+     */
     @Test
     public void testIncorrectCredentials(){
         LoginPage loginPage = new LoginPage(driver);
@@ -41,15 +49,21 @@ public class LoginUITest {
                 .fillUsername("test")
                 .fillPassword("test")
                 .loginExpectingFailure();
+
         assertEquals("Incorrect username or password.", message);
     }
 
+    /**
+     * Ensures that the user can successfully log in with valid credentials.
+     */
     @Test
     public void testCorrectCredentials(){
         LoginPage loginPage = new LoginPage(driver);
         LoginStatusPage statusPage = loginPage.openPage()
                 .loginAs(UserInfo.USERNAME,UserInfo.PASSWORD);
+
         String accountName = statusPage.openWebPlayer().getAccountName();
+
         assertEquals(UserInfo.ACCOUNT_NAME, accountName);
     }
 
